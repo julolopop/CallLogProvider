@@ -9,7 +9,9 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by usuario on 9/02/18.
@@ -46,9 +48,11 @@ public class CallLogAdapter extends CursorAdapter{
         Calendar a = Calendar.getInstance();
         a.setTimeInMillis(cursor.getLong(1));
 
+        SimpleDateFormat b = new SimpleDateFormat("yyyy.MM.dd G 'at' HH:mm:ss z");
         CallLogHolder holder = (CallLogHolder) view.getTag();
         holder.txv_nombre.setText(cursor.getString(0));
-        holder.txv_date.setText(a.get(Calendar.DAY_OF_MONTH)+"/"+a.get(Calendar.MONTH));
+        // holder.txv_date.setText(a.get(Calendar.DAY_OF_MONTH)+"/"+a.get(Calendar.MONTH));
+         holder.txv_date.setText(b.format(a.getTime()));
         holder.txv_duracion.setText(cursor.getString(2));
         holder.txv_type.setText(cursor.getString(3));
 
